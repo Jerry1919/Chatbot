@@ -73,22 +73,21 @@ def userInputs(robo,user,status):
                 f.close()
                 print(f"{robo} : Done !")
                 userInputs(robo,user,status)
-    # for keyword in extractOfQuestion:
-    #     for word in askData:
-    #         if(keyword == word and own == 1):
-    #             f = open(f'{user}.txt','r')
-    #             f.seek(0)
-    #             lines = f.readlines()
-    #             f.close()
-    #             for line in lines:
-    #                 Key,Value,a1 = line.split(" : ")
-    #                 print(Key,Value)
-    #                 for keyword1 in extractOfQuestion:
-    #                     if(Key.lower() == keyword1):
-    #                         print(f"{robo} : {Value}")
-    #                     else:
-    #                         print(f"{robo} : Sorry but this data is not available.")
-    #                     userInputs(robo,user,status)
+    for keyword in extractOfQuestion:
+        for word in askData:
+            if(keyword == word or (keyword == "what" and own==1)):
+                f = open(f'{user}.txt','r')
+                f.seek(0)
+                lines = f.readlines()
+                f.close()
+                for line in lines:
+                    Key,Value,a1 = line.split(" : ")
+                    # print(Key,Value)
+                    if(Key.lower() in userquestion.lower()):    
+                        print(f"{robo} : {Value}")
+                        userInputs(robo,user,status)                
+                print(f"{robo} : Sorry but this data is not available.")
+                userInputs(robo,user,status)
                 
                       
 
