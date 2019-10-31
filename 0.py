@@ -101,7 +101,7 @@ def userInputs(robo,user,status,userquestion):
                     Key,Value,a1 = line.split(" : ")
                     if(Key == dataKey):
                         data = 1
-                        print(f"{robo} : what you want to set instead of {Value} ?")
+                        print(f"{robo} : what you want to set instead of '{Value}' ?")
                         MValue = input(f"{user} : ").strip()
                         if(MValue in empty):
                             print(f"{robo} : Sorry you haven't entered anything, Please try again !")
@@ -119,6 +119,8 @@ def userInputs(robo,user,status,userquestion):
                         print(f"{robo} : Sorry you haven't entered anything, Please try again !")
                     elif (answer in yes):
                         userInputs(robo,user,status,f"Hey {robo} please save {dataKey}")
+                    elif (answer in no):
+                        print(f"{robo} : ok alright , let's discover more things!")
                     else:
                         print(f"{robo} : Sorry can't able understand, Please try again !")
                 userInputs(robo,user,status,"")
@@ -139,10 +141,10 @@ def userInputs(robo,user,status,userquestion):
                         elif (answer in yes):
                             print(f"{robo} : what do you want 'update' or 'save as new' ?")
                             response = input(f"{user} : ").strip()
-                            if(response in updateData):
-                                userInputs(robo,user,status,f"Hey {robo} please update {dataKey}")
-                            elif((response in saveData)or response == "new"):
+                            if((response in saveData) or (response == "new")):
                                 userInputs(robo,user,status,f"Hey {robo} please save {dataKey} (new)")
+                            elif(response in updateData):
+                                userInputs(robo,user,status,f"Hey {robo} please update {dataKey}")
                             else:
                                 print(f"{robo} : Sorry can't able understand, Please try again !")
                                 userInputs(robo,user,status,"")
@@ -159,30 +161,39 @@ def userInputs(robo,user,status,userquestion):
                 f.close()
                 print(f"{robo} : Done !")
                 userInputs(robo,user,status,"")
-    for keyword in extractOfQuestion:
-        for word in askData:
-            if(keyword == word or ((keyword in askdiff) and own==1)):        # ME => me mechanical
-                f = open(f'{user}.txt','r')
-                f.seek(0)
-                lines = f.readlines()
-                f.close()
-                for line in lines:
-                    Key,Value,a1 = line.split(" : ")
-                    print(Key,Value)
-                    if(Key.lower() in userquestion.lower()):    
-                        print(f"{robo} : {Value}")
-                        userInputs(robo,user,status,"")                
-                print(f"{robo} : Sorry but this data is not available.")
-                userInputs(robo,user,status,"")
-    print(f"{robo} : Sorry but I am not supposed to answer this !")
+    for word in askData:
+        if((word in userquestion.lower()) or (("what") in userquestion.lower() and own==1)):# ME => mech
+            a1,dataKey = userquestion.split(f"{word} ")
+            f = open(f'{user}.txt','r')
+            found = 0 
+            f.seek(0)
+            lines = f.readlines()
+            f.close()
+            num = 0
+            for line in lines:
+                Key,Value,a1 = line.split(" : ")
+                if(dataKey.lower() in Key.lower()):   
+                    found = 1 
+                    num+=1
+                    a1,key =  Key.split("my ")
+                    print(f"{robo} : {num}. {key} - {Value}")
+            if(found ==1):
+                userInputs(robo,user,status,"")     
 
-                
-                      
+            print(f"{robo} : Sorry but this data is not available, Do you want to add this ?")
+            answer = input(f"{user} : ").strip()
+            if(answer in empty):
+                print(f"{robo} : Sorry you haven't entered anything, Please try again !")
+            elif (answer in no):
+                print(f"{robo} : ok alright , let's discover more things!")    
+            elif (answer in yes):
+                userInputs(robo,user,status,f"Hey {robo} please save {dataKey}")                     
+            else:
+                print(f"{robo} : Sorry can't able understand, Please try again !")
+            userInputs(robo,user,status,"")
 
 
-
-
-    
+    print(f"{robo} : Sorry but I am not supposed to answer this !")    
     userInputs(robo,user,status,"")
 
 
