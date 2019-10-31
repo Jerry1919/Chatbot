@@ -193,7 +193,11 @@ def userInputs(robo,user,status,userquestion):
             userInputs(robo,user,status,"")
 
 
-    print(f"{robo} : Sorry but I am not supposed to answer this !")    
+    print(f"{robo} : Sorry I am not supposed to answer this !")
+    f = open("ADMINfeedback.txt","a")
+    f.write(f"{userquestion}\n")
+    f.close()
+    print(f"{robo} : your question has been added in feedback for Admin") 
     userInputs(robo,user,status,"")
 
 
