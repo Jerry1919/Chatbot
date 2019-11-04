@@ -65,21 +65,49 @@ welcomeGreetings1 = ["good morning","good evening","good afternoon"]
 welcomeGreetingResponces = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
 exitGreetings = ["exit","bye","byee","byeee","quit","good night","thanks","thank you"]
 saveData = ["save","add","remember","store"]
-userCall = ["me","I","mine","my"]
 askData = ["show","tell","show me","tell me"]
 updateData = ["change","update","replace"]
 askdiff = ["what","what's"]
 yes = ["y","s","yes","ya","yeah","okey","hmmm","hmm"]
 no = ["no","leave","na","n"]
-
+userCall = ["me","I","mine","my"]
+questioncall = ["what ","when ","where ","why ","?"]
+questioncall1 = ["how "]
+moodcall = [" happy","Angry","depress","unhappy","boring",""]
 def userInputs(robo,user,status,userquestion):
-    own = 0
+
+###################################################################################################### 
+
+# input from user :
+
     if(userquestion == ""):
         userquestion = input(f"{user} : ").strip()
 
+###################################################################################################### 
+
+# Analaysis of user Question : 
+
+# checking is their word relating user itself like me,my,mine,I
+    own = 0
     for word in userCall:
-            if(word in userquestion.lower()):
-                own = 1
+        if(word in userquestion.lower()):
+            own = 1
+# checking is their word relating question like what,when,?,
+    question = 0
+    for word in questioncall:
+        if(word in userquestion.lower()):
+            question = 1
+
+# checking is their word relating question like what,when,?,
+    question = 0
+    for word in questioncall:
+        if(word in userquestion.lower()):
+            question = 1
+
+###################################################################################################### 
+
+# conclusion and result of conclusion
+
     for word in welcomeGreetings1:
             if(word in userquestion.lower()):
                 print(f"{robo} : {word.title()} buddy 😊 ")
@@ -204,8 +232,11 @@ def userInputs(robo,user,status,userquestion):
                 print(f"{robo} : Sorry can't able understand, Please try again !")
             userInputs(robo,user,status,"")
 
+############################################################e########################################## 
 
-    print(f"{robo} : Sorry I am not supposed to answer this !")
+# Unable to interpret 
+
+    print(f"{robo} : Sorry I am not able to answer this !")
     f = open("ADMINfeedback.txt","a")
     f.write(f"{userquestion}\n")
     f.close()
@@ -214,3 +245,5 @@ def userInputs(robo,user,status,userquestion):
 
 
 userInputs(robo,user,1,"")
+
+###################################################################################################### 
