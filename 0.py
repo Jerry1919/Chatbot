@@ -8,6 +8,9 @@ print(f"{robo} : Hi.!! I am {robo}, here for you.")
 print(f"{robo} : What's your user name? ")
 user = input(f"user : ").strip()
 
+# Login
+
+
 if not os.path.exists(f'{user}.txt'):
     print(f"{robo} : I'm glad that you are here 😊  I assure, you will have great experiance.")
     print(f"{robo} : {user} Please, Enter password for your new account :")
@@ -54,15 +57,16 @@ else:
     f.close()
     print(f"{robo} : what do you want to discover?")
 
+# login done 
 
 welcomeGreetings = ["hello", "hi","hii","hiii", "greetings", "sup"]
+callingrobo = [f"Hi {robo}",f"hello {robo}"]
 welcomeGreetings1 = ["good morning","good evening","good afternoon"]
 welcomeGreetingResponces = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
 exitGreetings = ["exit","bye","byee","byeee","quit","good night","thanks","thank you"]
 saveData = ["save","add","remember","store"]
-typesOfData = ["name","roll number","gmail","address","branch","college","birthdate","year","hostel","friends","place","TODO","mobile"]
 userCall = ["me","I","mine","my"]
-askData = ["show","tell"]
+askData = ["show","tell","show me","tell me"]
 updateData = ["change","update","replace"]
 askdiff = ["what","what's"]
 yes = ["y","s","yes","ya","yeah","okey","hmmm","hmm"]
@@ -72,10 +76,9 @@ def userInputs(robo,user,status,userquestion):
     own = 0
     if(userquestion == ""):
         userquestion = input(f"{user} : ").strip()
-    extractOfQuestion = [ keyword   for keyword in userquestion.split() ]
-    for keyword in extractOfQuestion:
-        for word in userCall:
-            if(keyword == word):
+
+    for word in userCall:
+            if(word in userquestion.lower()):
                 own = 1
     for word in welcomeGreetings1:
             if(word in userquestion.lower()):
@@ -86,12 +89,15 @@ def userInputs(robo,user,status,userquestion):
                 print(f"{robo} : {random.choice(welcomeGreetingResponces)}")
                 userInputs(robo,user,1,"")
     for word in exitGreetings:
-            if(word in userquestion.lower()):
+            if(word in userquestion.lower() or status == 0):
                 print(f"{robo} : Ok Byeee.! Have a nice day 😊 ")
                 exit()
     for word in updateData:
             if(word in userquestion.lower()):
                 a1,dataKey = userquestion.split(f"{word} ")
+                if(dataKey is empty):
+                    print(f"{robo} : sorry but can you be more clear")
+                    userInputs(robo,user,1,"")                    
                 f = open(f'{user}.txt','r')
                 lines = f.readlines()
                 os.remove(f"{user}.txt")
@@ -127,13 +133,16 @@ def userInputs(robo,user,status,userquestion):
     for word in saveData:
             if(word in userquestion.lower()):
                 a1,dataKey = userquestion.split(f"{word} ")
+                if(dataKey is empty):
+                    print(f"{robo} : sorry but can you be more clear")
+                    userInputs(robo,user,1,"")
                 f = open(f'{user}.txt','r')
                 lines = f.readlines()
                 for line in lines:
                     Key,Value,a1 = line.split(" : ")
                     if(Key == dataKey):
                         print(f"{robo} : sorry it's already saved")
-                        print(f"{robo} : Do you want to 'update it or save as new '?")
+                        print(f"{robo} : Do you want to 'update it or save as new' ?")
                         answer = input(f"{user} : ").strip()
                         if(answer in empty):
                             print(f"{robo} : Sorry you haven't entered anything, Please try again !")
@@ -141,7 +150,7 @@ def userInputs(robo,user,status,userquestion):
                         elif (answer in yes):
                             print(f"{robo} : what do you want 'update' or 'save as new' ?")
                             response = input(f"{user} : ").strip()
-                            if((response in saveData) or (response == "new")):
+                            if(response in saveData or response == "new"):
                                 userInputs(robo,user,status,f"Hey {robo} please save {dataKey} (new)")
                             elif(response in updateData):
                                 userInputs(robo,user,status,f"Hey {robo} please update {dataKey}")
@@ -164,6 +173,9 @@ def userInputs(robo,user,status,userquestion):
     for word in askData:
         if((word in userquestion.lower()) or (("what") in userquestion.lower() and own==1)):# ME => mech
             a1,dataKey = userquestion.split(f"{word} ")
+            if(dataKey is empty):
+                print(f"{robo} : sorry but can you be more clear")
+                userInputs(robo,user,1,"")
             f = open(f'{user}.txt','r')
             found = 0 
             f.seek(0)
