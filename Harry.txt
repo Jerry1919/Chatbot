@@ -1,11 +1,9 @@
 Password : 1234 : 
 Robo : Siri : 
-my roll number : 180040072 : 
-my roll number (new) : 451425 : 
+my roll number : 180023221012 : 
 my date of birth : 279740 : 
 my sirname : master : 
 my year : 2019 : 
 my house number : G-8 : 
-roll number : 43522 : 
-my house number (new) : G-7 : 
-DOB : 132939 : 
+my DOB : 1321 : 
+my college name : IIT-Dh : 
