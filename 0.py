@@ -82,7 +82,6 @@ def userInputs(robo,user,status,userquestion):
 
     if(userquestion == ""):
         userquestion = input(f"{user} : ").strip()
-
 ###################################################################################################### 
 
 # Analaysis of user Question : 
@@ -215,8 +214,11 @@ def userInputs(robo,user,status,userquestion):
                 if(dataKey.lower() in Key.lower()):   
                     found = 1 
                     num+=1
-                    a1,key =  Key.split("my ")
-                    print(f"{robo} : {num}. {key} - {Value}")
+                    if("my " in Key):
+                        a1,key =  Key.split("my ")
+                        print(f"{robo} : {num}. {key} - {Value}")
+                    else:
+                        print(f"{robo} : {num}. {Key} - {Value}")
             if(found ==1):
                 userInputs(robo,user,status,"")     
 
