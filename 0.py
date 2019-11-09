@@ -60,7 +60,6 @@ else:
 # login done 
 
 welcomeGreetings = ["hello", "hi","hii","hiii", "greetings", "sup"]
-callingrobo = [f"Hi {robo}",f"hello {robo}"]
 welcomeGreetings1 = ["good morning","good evening","good afternoon"]
 welcomeGreetingResponces = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
 exitGreetings = ["exit","bye","byee","byeee","quit","good night","thanks","thank you"]
@@ -74,6 +73,9 @@ userCall = ["me","I","mine","my"]
 questioncall = ["what ","when ","where ","why ","?"]
 questioncall1 = ["how "]
 moodcall = [" happy","Angry","depress","unhappy","boring",""]
+
+
+
 def userInputs(robo,user,status,userquestion):
 
 ###################################################################################################### 
