@@ -1,0 +1,9 @@
+Password : 1234 : 
+firstname : james : 
+lastname : potter : 
+city : pbn : 
+country : ind : 
+phone number : 543 : 
+mail ID : sd@fbd : 
+JEE rank : 25435 : 
+my roll number : 1890292 : 

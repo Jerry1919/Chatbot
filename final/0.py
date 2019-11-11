@@ -29,12 +29,12 @@ userCall = ["me","I","mine","my"]
 questioncall = ["what ","when ","where ","why ","?"]
 questioncall1 = ["how "]
 moodcall = [" happy","Angry","depress","unhappy","boring",""]
-options=["sports","campus","faculty","library","administration","students","workshops","icc","dharwad","testimonials","others","gallery","contact","ambulance"]
+options=["sports","campus","faculty","library","administration","students","workshops","icc","testimonials","others","gallery","contact","ambulance"]
 information = ["dean"," address ","campus area temporary ","Director ","Founded ","Chairman ","website ","fullform ",
 "motto ","Mentor ","Acronym ","Nearest Airport ","enrollment "," 550 (2019) ",
 "Ownership ","Total Faculty ","Courses Offered ","Railway Station ","admission ","PLACEMENTS ","about ",
 "location ","Contact ","email ","Ambulance ","Astronomy Club ","Photography Club ","Robotics Club ",
-"library ","club"]
+"library ","club","mtech","how to go","how to rich","ragging","autonomus","rank 1 IIT ","how are you "," what are you doing "," rank required ","required rank"]
 imejas = ["cutoff","photo","dharwad","director","fees","future ","holiday","hostel","location","logo","permanent","seats"]
 
 
@@ -570,6 +570,34 @@ def userInputs(robo,user,status,userquestion):
             t1 = ("site","https://www.youtube.com/channel/UCG_M5tP34-uO-Jkr9Q7VDsA",f"{robo} : Opening youtube channel")
                 # webbrowser.open("https://www.youtube.com/channel/UCG_M5tP34-uO-Jkr9Q7VDsA")
             return t1
+        if ("twitter" in userquestion.lower()):
+            t1 = ("site","https://twitter.com/iitdhrwd",f"{robo} : Opening twitter..")
+            return t1
+        if ("intranet" in userquestion.lower()):
+            t1 = ("site","http://intranet.iitdh.ac.in:81/",f"{robo} : Opening Intranet..")
+            return t1
+        if ("more about college" in userquestion.lower()):
+            t1 = ("site","https://www.collegepravesh.com/engineering-colleges/iit-dharwad/",f"{robo} : Opening collagepravesh.com")
+            return t1
+        if ("portal" in userquestion.lower()):
+            t1 = ("site","http://portal.iitdh.ac.in/asc/index.jsp",f"{robo} : Opening IIT Dharwad Portal")
+            return t1
+        if ("moddle" in userquestion.lower()):
+            t1 = ("site","https://moodle2.iitdh.ac.in/my/", f"{robo} : Opening moodle")
+            return t1
+        if ("news" in userquestion.lower()):
+            t1 = ("site","https://timesofindia.indiatimes.com/topic/IIT-Dharwad",f"{robo} : Opening news")
+            return t1
+        if ("quora"  in userquestion.lower() or "query" in userquestion.lower()):
+            t1 = ("site",f"https://www.quora.com/search?q={userquestion}",f"{robo} : Opening quora..")
+            return t1
+        if ("train" in userquestion.lower() or "flight" in userquestion.lower()):
+            t1 = ("site","https://railways.makemytrip.com/listing?date=20191120&srcStn=SBC&srcCity=Benguluru&destStn=DWR&destCity=Dharwar&classCode=",f"{robo} : Opening make my trip..")
+            return t1
+        if ("hotel" in userquestion.lower()):
+            t1 = ("site","https://www.makemytrip.com/hotels/hotel-listing/?checkin=11202019&checkout=11222019&roomStayQualifier=2e0e&city=XZQ&country=IN&type=CTY&searchText=Dharwad&visitorId=628f4b8d-399c-4531-84c3-fc1c79c4b953",f"{robo} :Opening make my trip..")
+            return t1
+ 
     for word in imejas:
         if(word in userquestion.lower()):
             try:
