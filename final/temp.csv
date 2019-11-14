@@ -1,0 +1,21 @@
+Book Name | Auhor | Number of copies | Price | Issued by | Description | Reviews
+Read Math1 | Jacobian | 10 | 250 | Harry1, Harris1, Hats1 | Good for Math | 4.7
+Read Math2 | Jacobian | 4 | 499 | Harry2, Harris2, Hats2 | Good for science | 4.2
+Read Math3 | Jacobian | 11 | 450 | Harry3, Harris3, Hats3 | Good for social science | 4.1
+Read Math4 | Jacobian | 11 | 456 | Harry4, Harris4, Hats4 | Good for commerce | 3.7
+Read Math5 | Jacobian | 4 | 45 | Harry5, Harris5, Hats5 | Good for Math | 4.8
+Read Math6 | Jacobian | 16 | 746 | Harry6, Harris6, Hats6 | Good for chemistry | 4.9
+Read Math7 | Jacobian | 13 | 796 | Harry4, Harris6, Hats5 | Good for physics | 2.8
+Read Math8 | Jacobian | 8 | 236 | Harry3, Harris4, Hats3 | Good for data science | 4.0
+Read Math9 | Jacobian | 8 | 746 | Harry7, Harris6, Hats7 | Good for data analysis | 1.9
+Read Math10 | Jacobian | 10 | 400 | Harry8, Harris9, Hats8 | Good for C | 3.3
+Read Chem1 | Jacobian | 10 | 440 | Harry8, Harris9, Hats9 | Good for python | 4.5
+Read Chem2 | Jacobian | 8 | 800 | Harry8, Harris7, Hats7 | Good for java | 3.4
+Read Chem3 | Jacobian | 16 | 1240 | Harry5, Harris6, Hats2 | Good for javascript | 3.7
+Read Chem4 | Jacobian | 8 | 376 | Harry3, Harris5, Hats4 | Good for Music | 4.7
+Read Chem5 | Jacobian | 19 | 870 | Harry2, Harris3, Hats3 | Good for History | 4.7
+Read Chem6 | Jacobian | 13 | 170 | Harry4, Harris2, Hats3 | Good for Math | 2.7
+Read Chem7 | Jacobian | 19 | 440 | Harry3, Harris5, Hats8 | Good for science | 2.9
+Read Chem8 | Jacobian | 10 | 240 | Harry7, Harris6, Hats6 | Good for python | 4.7
+Read Chem9 | Jacobian | 8 | 190 | Harry8, Harris4, Hats7 | Good for C | 2.2
+Read Chem10 | Jacobian | 1 | 1640 | Harry7, Harris7, Hats4 | Good for story | 3.0

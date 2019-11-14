@@ -8,35 +8,15 @@ import random
 import webbrowser
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import lists
+
+from csv import DictWriter,DictReader
+
+
 # wid.configure(bg = newColour) button,etc
 robo = "champ"
 # user = "You"
 task = 0
-empty = [" ","\t","\n",""]
-
-welcomeGreetings = ["hello", "hi","hii","hiii", "greetings", "sup"]
-callingrobo = [f"Hi {robo}",f"hello {robo}"]
-welcomeGreetings1 = ["good morning","good evening","good afternoon"]
-welcomeGreetingResponces = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
-exitGreetings = ["exit","bye","byee","byeee","quit","good night","thanks","thank you"]
-saveData = ["save","remember","store"]
-askData = ["show","tell","show me","tell me"]
-updateData = ["change","update","replace"]
-askdiff = ["what","what's"]
-yes = ["y","s","yes","ya","yeah","okey","hmmm","hmm"]
-no = ["no","leave","na","n"]
-userCall = ["me","I","mine","my"]
-questioncall = ["what ","when ","where ","why ","?"]
-questioncall1 = ["how "]
-moodcall = [" happy","Angry","depress","unhappy","boring",""]
-options=["sports","campus","faculty","library","administration","students","workshops","icc","testimonials","others","gallery","contact","ambulance"]
-information = ["dean"," address ","campus area temporary ","Director ","Founded ","Chairman ","website ","fullform ",
-"motto ","Mentor ","Acronym ","Nearest Airport ","enrollment "," 550 (2019) ",
-"Ownership ","Total Faculty ","Courses Offered ","Railway Station ","admission ","PLACEMENTS ","about ",
-"location ","Contact ","email ","Ambulance ","Astronomy Club ","Photography Club ","Robotics Club ",
-"library ","club","mtech","how to go","how to rich","ragging","autonomus","rank 1 IIT ","how are you "," what are you doing "," rank required ","required rank"]
-imejas = ["cutoff","photo","dharwad","director","fees","future ","holiday","hostel","location","logo","permanent","seats"]
-
 
 mainApplication = tk.Tk()
 mainApplication.geometry("1000x450")
@@ -101,8 +81,378 @@ def signIn():
                 MobileInput.delete(0,tk.END)
             else:
                 Sign.destroy()
-                chatbot(name)
+                if(user == "Admin"):
+                    adminSection()
+                else:
+                    chatbot(name)
 
+####################################################################################
+####################################################################################
+####################################################################################
+
+def adminSection():
+    # print("In admin section ")
+    name = "Admin"
+    password = "Admin"
+    ttk.Style().configure('Font.TLabelframe',background = "#b3f5e9",foreground = "red")
+    AdminBox1 = ttk.LabelFrame(mainApplication,text="  Admin Section ",style ='Font.TLabelframe')
+    AdminBox1.grid(row = 0,column = 0,padx = 325,pady = 125)
+
+
+    def Update():
+        AdminBox1.destroy()
+        ttk.Style().configure('Font.TLabelframe',background = "#b3f5e9",foreground = "red")
+        updateBox = ttk.LabelFrame(mainApplication,text=" Only below Data files can be updated",style ='Font.TLabelframe')
+        updateBox.grid(row = 0,column = 0,padx = 325,pady = 125)
+
+        submitButton = tk.Button(updateBox,text="library data",command =updatelibrarydata)
+        submitButton.grid(row = 0,column = 0,padx = 80,pady =10)
+        submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+        submitButton = tk.Button(updateBox,text="not available")
+        submitButton.grid(row = 1,column = 0,padx = 80,pady =10)
+        submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+        submitButton = tk.Button(updateBox,text=" not avalaible ")
+        submitButton.grid(row = 2,column = 0,padx = 80,pady =10)
+        submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+        
+        
+    def Add():
+        AdminBox1.destroy()
+        ttk.Style().configure('Font.TLabelframe',background = "#b3f5e9",foreground = "red")
+        updateBox = ttk.LabelFrame(mainApplication,text=" Only below Data files can be extended",style ='Font.TLabelframe')
+        updateBox.grid(row = 0,column = 0,padx = 325,pady = 125)
+
+        submitButton = tk.Button(updateBox,text="library data",command =addlibrarydata)
+        submitButton.grid(row = 0,column = 0,padx = 80,pady =10)
+        submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+        submitButton = tk.Button(updateBox,text="not available")
+        submitButton.grid(row = 1,column = 0,padx = 80,pady =10)
+        submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+        submitButton = tk.Button(updateBox,text=" not avalaible ")
+        submitButton.grid(row = 2,column = 0,padx = 80,pady =10)
+        submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+
+    def Feedback():
+        AdminBox1.destroy()
+        WorkOnFeedback()
+
+    submitButton = tk.Button(AdminBox1,text="work on Feedback",command = Feedback)
+    submitButton.grid(row = 0,column = 0,padx = 80,pady =10)
+    submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+    submitButton = tk.Button(AdminBox1,text="Update data",command = Update)
+    submitButton.grid(row = 1,column = 0,padx = 80,pady =10)
+    submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+    submitButton = tk.Button(AdminBox1,text="Add data",command = Add)
+    submitButton.grid(row = 2,column = 0,padx = 80,pady =10)
+    submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+##########################################################################################################
+##########################################################################################################
+##########################################################################################################
+##########################################################################################################
+def updatelibrarydata():
+    ttk.Style().configure('Font.TLabelframe',background = "#b3f5e9",foreground = "red")
+    addDataInLabrary = ttk.LabelFrame(mainApplication,text="  Add library data ",style='Font.TLabelframe')
+    addDataInLabrary.grid(row = 0,column = 0,padx = 100,pady = 30)
+
+    labelFrame = ttk.LabelFrame(addDataInLabrary,text="   please Enter All details correctly !   ",style='Font.TLabelframe')
+    labelFrame.grid(row = 0,column = 0,padx = 40,pady = 30)
+
+
+    labels = ["Book Name : ",  "Auhor : ",  "Number of copies : ",  "Price : ",  "Issued by : ",  "Description : ",  "Reviews (0.0-5.0) : "]
+
+    for i in range(len(labels)):
+        currentLabel = ttk.Label(labelFrame,text=labels[i]) 
+        currentLabel.grid(row=i,column=0,sticky=tk.W) 
+
+    userDict1 = {
+        "Book Name":tk.StringVar(),
+        "Auhor":tk.StringVar(),
+        "Number of copies":tk.StringVar(),
+        "Price":tk.StringVar(),
+        "Issued by":tk.StringVar(),
+        "Description":tk.StringVar(),
+        "Reviews (0.0-5.0)":tk.StringVar()
+    }
+
+    index = 0
+
+    for i in userDict1:
+        currentEntryBox = ttk.Entry(labelFrame,width = 40,textvariable = userDict1[i])
+        currentEntryBox.grid(row = index,column = 2)
+        currentEntryBox.focus()
+        index+=1
+
+   
+    for child in labelFrame.winfo_children():
+        child.grid_configure(padx=35,pady=5)
+
+
+    def submitAction():
+        pass
+        ok = 1
+        num = [] 
+        for i in userDict1:
+            if userDict1[i].get() == "":
+                mBox.showerror('Warning',"fields Can't be Empty" )
+                ok = -1
+                break
+            num.append(userDict1[i].get())
+
+        if ok==1:
+            pass
+            with open('libbooks.csv','a',newline='') as wf:
+                CSVwriter = DictWriter(wf,fieldnames=['Book Name' , 'Auhor' , 'Number of copies' , 'Price' , 'Issued by' , 'Description' , 'Reviews'],delimiter='|')
+                CSVwriter.writerow({
+                                        "Book Name":num[0],
+                                        "Auhor":num[1],
+                                        "Number of copies":num[2],
+                                        "Price":num[3],
+                                        "Issued by":num[4],
+                                        "Description":num[5],
+                                        "Reviews":num[6]
+                                    })
+            mBox.showinfo ('successful',"Book has been added successfully" )
+    submitButton = tk.Button(addDataInLabrary,text="  Add  ",command = submitAction)
+    submitButton.grid(row = 1,column = 0,padx = 80,pady =10)
+    submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+def addlibrarydata():
+    ttk.Style().configure('Font.TLabelframe',background = "#b3f5e9",foreground = "red")
+    addDataInLabrary = ttk.LabelFrame(mainApplication,text="  Add library data ",style='Font.TLabelframe')
+    addDataInLabrary.grid(row = 0,column = 0,padx = 100,pady = 30)
+
+    labelFrame = ttk.LabelFrame(addDataInLabrary,text="   please Enter All details correctly !   ",style='Font.TLabelframe')
+    labelFrame.grid(row = 0,column = 0,padx = 40,pady = 30)
+
+
+    labels = ["Book Name : ",  "Auhor : ",  "Number of copies : ",  "Price : ",  "Issued by : ",  "Description : ",  "Reviews (0.0-5.0) : "]
+
+    for i in range(len(labels)):
+        currentLabel = ttk.Label(labelFrame,text=labels[i]) 
+        currentLabel.grid(row=i,column=0,sticky=tk.W) 
+
+    userDict1 = {
+        "Book Name":tk.StringVar(),
+        "Auhor":tk.StringVar(),
+        "Number of copies":tk.StringVar(),
+        "Price":tk.StringVar(),
+        "Issued by":tk.StringVar(),
+        "Description":tk.StringVar(),
+        "Reviews (0.0-5.0)":tk.StringVar()
+    }
+
+    index = 0
+
+    for i in userDict1:
+        currentEntryBox = ttk.Entry(labelFrame,width = 40,textvariable = userDict1[i])
+        currentEntryBox.grid(row = index,column = 2)
+        currentEntryBox.focus()
+        index+=1
+
+   
+    for child in labelFrame.winfo_children():
+        child.grid_configure(padx=35,pady=5)
+
+
+    def submitAction():
+        pass
+        ok = 1
+        num = [] 
+        for i in userDict1:
+            if userDict1[i].get() == "":
+                mBox.showerror('Warning',"fields Can't be Empty" )
+                ok = -1
+                break
+            num.append(userDict1[i].get())
+
+        if ok==1:
+            pass
+            with open('libbooks.csv','a',newline='') as wf:
+                CSVwriter = DictWriter(wf,fieldnames=['Book Name' , 'Auhor' , 'Number of copies' , 'Price' , 'Issued by' , 'Description' , 'Reviews'],delimiter='|')
+                CSVwriter.writerow({
+                                        "Book Name":num[0],
+                                        "Auhor":num[1],
+                                        "Number of copies":num[2],
+                                        "Price":num[3],
+                                        "Issued by":num[4],
+                                        "Description":num[5],
+                                        "Reviews":num[6]
+                                    })
+            mBox.showinfo ('successful',"Book has been added successfully" )
+
+    submitButton = tk.Button(addDataInLabrary,text="  Add  ",command = submitAction)
+    submitButton.grid(row = 1,column = 0,padx = 80,pady =10)
+    submitButton.configure(foreground = "#ffffff",background = "#000000")
+
+#########################################################################################################
+##########################################################################################################
+
+
+def WorkOnFeedback():
+
+        ttk.Style().configure('Font.TLabelframe',background = "#b3f5e9",foreground = "red")
+        FeedbackBox = ttk.LabelFrame(mainApplication,text="  Improvement Box ",style ='Font.TLabelframe')
+        FeedbackBox.grid(row = 0,column = 0,padx = 170,pady = 110)
+
+
+        f = open(f'ADMINfeedback.txt','r')
+        f.seek(0)
+        Readlines = f.readlines()
+        os.remove("ADMINfeedback.txt")
+        removedQ = []
+        laterQ = []
+        ModifiedQ = []
+        answerOfModifiedQ = []
+
+
+        numofQ = len(Readlines)
+        # temp = True
+        num = 0
+        # # for line in Readlines:
+        # while temp and num <numofQ:
+        #     line = Readlines[num]
+        #     num+=1
+        # #     temp = False
+        # def feedbackDone():
+        #     pass
+
+        def eachFeedback(num,numofQ):
+            
+            if(num == numofQ):
+                removeQ0 = len(removedQ)
+                laterQ0 = len(laterQ)
+                addedQ0 = len(ModifiedQ)
+                FeedbackDone = ttk.Label(FeedbackBox,text=f"Great .!!\nyou have worked on all Feedbacks\n\nremoved irrelevant feedbacks : {removeQ0}\nadded for later : {laterQ0}\nfeedbacks accepted : {addedQ0}",font = (12)) 
+                FeedbackDone.grid(row=0,column=0,sticky=tk.W,padx=200,pady=30)
+                finalWorkOnFeedback(removedQ,laterQ,ModifiedQ,answerOfModifiedQ)
+                
+                def over():
+                    exit()
+                doneButton = tk.Button(FeedbackBox,text=" Done ",command = over)
+                doneButton.grid(row = 1,column = 0,padx = 220,pady =10 ,sticky=tk.W)
+                doneButton.configure(foreground = "#ffffff",background = "#000000")
+                return
+
+            line = Readlines[num].strip()
+            
+            num+=1
+
+            def add():
+
+                ModifiedQ.append(improvedquestion.get())
+                answerOfModifiedQ.append(answerForQuestion.get())
+
+                Label01.grid_remove()
+                submitButton1.grid_remove()
+                submitButton2.grid_remove()
+                Label02.grid_remove()
+                improvedquestionInput.grid_remove()
+                Label03.grid_remove()
+                answerForQuestionInput.grid_remove()
+                submitButton3.grid_remove()
+
+
+                eachFeedback(num,numofQ)
+            def remove():
+                removedQ.append(line)
+
+                Label01.grid_remove()
+                submitButton1.grid_remove()
+                submitButton2.grid_remove()
+                Label02.grid_remove()
+                improvedquestionInput.grid_remove()
+                Label03.grid_remove()
+                answerForQuestionInput.grid_remove()
+                submitButton3.grid_remove()
+                eachFeedback(num,numofQ)
+
+            def later():
+                laterQ.append(line)
+
+                Label01.grid_remove()
+                submitButton1.grid_remove()
+                submitButton2.grid_remove()
+                Label02.grid_remove()
+                improvedquestionInput.grid_remove()
+                Label03.grid_remove()
+                answerForQuestionInput.grid_remove()
+                submitButton3.grid_remove()
+                eachFeedback(num,numofQ)
+
+
+            Label01 = ttk.Label(FeedbackBox,text=f"Q : {line}",font = (12)) 
+            Label01.grid(row=0,column=0,sticky=tk.W,padx=40,pady=30)
+
+            submitButton1 = tk.Button(FeedbackBox,text="remove",command = remove)
+            submitButton1.grid(row = 0,column = 1,padx = 50,pady =10,sticky = tk.W)
+            submitButton1.configure(foreground = "#ffffff",background = "#000000")
+
+            submitButton2 = tk.Button(FeedbackBox,text="Later",command =later)
+            submitButton2.grid(row = 0,column = 1,padx = 50,pady =10,sticky = tk.E)
+            submitButton2.configure(foreground = "#ffffff",background = "#000000")
+
+
+            Label02 = ttk.Label(FeedbackBox,text=f"Improved question : ",font = (12)) 
+            Label02.grid(row=1,column=0,sticky=tk.W,padx=40,pady=10)
+
+            improvedquestion = tk.StringVar()
+            improvedquestionInput = ttk.Entry(FeedbackBox,width = 40,textvariable = improvedquestion)
+            improvedquestionInput.grid(row = 1,column = 1,padx=20,pady=10)
+            improvedquestionInput.focus()
+
+            Label03 = ttk.Label(FeedbackBox,text=f"Answer for question : ",font = (12)) 
+            Label03.grid(row=2,column=0,sticky=tk.W,padx=40,pady=10)
+
+            answerForQuestion = tk.StringVar()
+            answerForQuestionInput = ttk.Entry(FeedbackBox,width = 40,textvariable = answerForQuestion)
+            answerForQuestionInput.grid(row = 2,column = 1,padx=20,pady=10)
+            answerForQuestionInput.focus()
+
+            submitButton3 = tk.Button(FeedbackBox,text="   Add   ",command = add)
+            submitButton3.grid(row = 3,column = 1,padx = 120,pady =10 ,sticky=tk.W)
+            submitButton3.configure(foreground = "#ffffff",background = "#000000")
+
+        eachFeedback(0,numofQ)
+
+        def finalWorkOnFeedback(removedQ,laterQ,ModifiedQ,answerOfModifiedQ):
+            # print(removedQ)
+            # print(laterQ)
+            # print(ModifiedQ)
+            # print(answerOfModifiedQ)
+
+
+            removedQ = []
+            f = open(f'ADMINfeedback.txt','a')
+            for line in laterQ:
+                f.write(f"{line}\n")
+            f.close()
+
+            addedQ1 = len(ModifiedQ)
+            f = open(f'info.txt','a')
+            for i in range(addedQ1):
+                f.write(f"{ModifiedQ[i]} : {answerOfModifiedQ[i]} : \n")
+            f.close()
+
+        # for line in lines:
+        #     Key,Value,a1 = line.split(" : ")
+        #     if(Key.lower() == "password"):
+        #         passwordValue = Value
+
+
+####################################################################################
+####################################################################################
+####################################################################################
+####################################################################################
+######
 
 def signUp():
     name = namestored.get().strip()
@@ -132,15 +482,14 @@ submitButton2.grid(row = 2,column = 0)
 submitButton2.configure(foreground = "#ffffff",background = "#000000")
 
 
-#########################################################################################################
-##########################################################################################################
 
 
 def SignUpForm(userName,password):
     name = userName
-    Signupnext = ttk.LabelFrame(mainApplication,text="  Sign up Form ")
+    ttk.Style().configure('Font.TLabelframe',background = "#b3f5e9",foreground = "red")
+    Signupnext = ttk.LabelFrame(mainApplication,text="  Sign up Form ",style='Font.TLabelframe')
     Signupnext.grid(row = 0,column = 0,padx = 275,pady = 30)
-    labelFrame = ttk.LabelFrame(Signupnext,text="   please Enter your details here !   ")
+    labelFrame = ttk.LabelFrame(Signupnext,text="   please Enter your details here !   ",style='Font.TLabelframe')
     labelFrame.grid(row = 0,column = 0,padx = 40,pady = 30)
 
 
@@ -329,13 +678,13 @@ def chatbot(name):
                 f.seek(0)
                 f.write("00") 
                 f.close()
-                if(rawQ in empty):
+                if(rawQ in lists.empty):
                     answer = f"{robo} : Sorry you haven't entered anything, Please try again !"
                     Actions.chatUpdate(answer,1)
-                elif (rawQ in no):
+                elif (rawQ in lists.no):
                     answer = f"{robo} : ok alright , let's discover more things!"
                     Actions.chatUpdate(answer,1)   
-                elif (rawQ in yes):
+                elif (rawQ in lists.yes):
                     f = open(f'01.txt','r+')
                     f.seek(0)
                     line = f.readline()
@@ -363,13 +712,13 @@ def chatbot(name):
                 f.seek(0)
                 f.write("00") 
                 f.close()
-                if(rawQ in empty):
+                if(rawQ in lists.empty):
                     answer = f"{robo} : Sorry you haven't entered anything, Please try again !"
                     Actions.chatUpdate(answer,1)
-                elif (rawQ in no):
+                elif (rawQ in lists.no):
                     answer = f"{robo} : ok alright , let's discover more things!"
                     Actions.chatUpdate(answer,1)   
-                elif (rawQ in yes):
+                elif (rawQ in lists.yes):
                     f = open(f'01.txt','r+')
                     f.seek(0)
                     line = f.readline()
@@ -396,7 +745,7 @@ def chatbot(name):
                 f.seek(0)
                 f.write("00") 
                 f.close()
-                if(rawQ in empty):
+                if(rawQ in lists.empty):
                     answer = f"{robo} : Sorry you haven't entered anything, Please try again !"
                     Actions.chatUpdate(answer,1)                
                 else:
@@ -417,7 +766,7 @@ def chatbot(name):
                 f.seek(0)
                 f.write("00") 
                 f.close()
-                if(rawQ in empty):
+                if(rawQ in lists.empty):
                     answer = f"{robo} : Sorry you haven't entered anything, Please try again !"
                     Actions.chatUpdate(answer,1)                
                 else:
@@ -438,7 +787,7 @@ def chatbot(name):
                 f.seek(0)
                 f.write("00") 
                 f.close()
-                if(rawQ in empty):
+                if(rawQ in lists.empty):
                     answer = f"{robo} : Sorry you haven't entered anything, Please try again !"
                     Actions.chatUpdate(answer,1)                
                 elif "save" in rawQ or "new" in rawQ:
@@ -516,6 +865,7 @@ def chatbot(name):
     chatStore = tk.StringVar()                    
     ageInputBox = ttk.Entry(ChatStarted,width = 80,textvariable = chatStore)
     ageInputBox.grid(row = 1,column = 0)
+    ageInputBox.focus()
     # ageInputBox.configure(background = "#f2b78d")
     
     submitButton = tk.Button(ChatStarted,text="Ask",command = callUpdater)
@@ -550,75 +900,37 @@ def chatbot(name):
 def userInputs(robo,user,status,userquestion):
         
     own = 0
-    for word in userCall:
+    for word in lists.userCall:
         if(word in userquestion.lower()):
             own = 1
-    for word in welcomeGreetings1:
+    for word in lists.welcomeGreetings1:
             if(word in userquestion.lower()):
                 return (f"{robo} : {word.title()} buddy  ")
-    for word in options:
-        if (word in userquestion.lower()):
-            t1 = ("site",f"http://www.iitdh.ac.in/{word}.php",f"{robo} : Now you will be directed to {word} page ")
-            # webbrowser.open(f"http://www.iitdh.ac.in/{word}.php")
-            return t1
+    
 
-        if ("facebook" in userquestion.lower()):
-            t1 = ("site","https://www.facebook.com/iitdharwadofficial/",f"{robo} : Opening Facebook page")
-                # webbrowser.open("https://www.facebook.com/iitdharwadofficial/")
-            return t1
-        if ("youtube" in userquestion.lower()):
-            t1 = ("site","https://www.youtube.com/channel/UCG_M5tP34-uO-Jkr9Q7VDsA",f"{robo} : Opening youtube channel")
-                # webbrowser.open("https://www.youtube.com/channel/UCG_M5tP34-uO-Jkr9Q7VDsA")
-            return t1
-        if ("twitter" in userquestion.lower()):
-            t1 = ("site","https://twitter.com/iitdhrwd",f"{robo} : Opening twitter..")
-            return t1
-        if ("intranet" in userquestion.lower()):
-            t1 = ("site","http://intranet.iitdh.ac.in:81/",f"{robo} : Opening Intranet..")
-            return t1
-        if ("more about college" in userquestion.lower()):
-            t1 = ("site","https://www.collegepravesh.com/engineering-colleges/iit-dharwad/",f"{robo} : Opening collagepravesh.com")
-            return t1
-        if ("portal" in userquestion.lower()):
-            t1 = ("site","http://portal.iitdh.ac.in/asc/index.jsp",f"{robo} : Opening IIT Dharwad Portal")
-            return t1
-        if ("moddle" in userquestion.lower()):
-            t1 = ("site","https://moodle2.iitdh.ac.in/my/", f"{robo} : Opening moodle")
-            return t1
-        if ("news" in userquestion.lower()):
-            t1 = ("site","https://timesofindia.indiatimes.com/topic/IIT-Dharwad",f"{robo} : Opening news")
-            return t1
-        if ("quora"  in userquestion.lower() or "query" in userquestion.lower()):
-            t1 = ("site",f"https://www.quora.com/search?q={userquestion}",f"{robo} : Opening quora..")
-            return t1
-        if ("train" in userquestion.lower() or "flight" in userquestion.lower()):
-            t1 = ("site","https://railways.makemytrip.com/listing?date=20191120&srcStn=SBC&srcCity=Benguluru&destStn=DWR&destCity=Dharwar&classCode=",f"{robo} : Opening make my trip..")
-            return t1
-        if ("hotel" in userquestion.lower()):
-            t1 = ("site","https://www.makemytrip.com/hotels/hotel-listing/?checkin=11202019&checkout=11222019&roomStayQualifier=2e0e&city=XZQ&country=IN&type=CTY&searchText=Dharwad&visitorId=628f4b8d-399c-4531-84c3-fc1c79c4b953",f"{robo} :Opening make my trip..")
-            return t1
- 
-    for word in imejas:
+    if("photo" in userquestion.lower() or "image" in userquestion.lower()):
+        for word in lists.imejas:
+            if(word in userquestion.lower()):
+                # try:
+                    try:
+                        img = mpimg.imread(f'images/{word}.png')
+                    except FileNotFoundError:
+                        img = mpimg.imread(f'images/{word}.jpg')
+                    imgplot = plt.imshow(img)
+                    plt.show()
+                    return(f"{robo} : and here we go!!")
+
+        return(f"{robo} : Sorry !! photos are not available")
+            
+
+    for word in lists.welcomeGreetings:
         if(word in userquestion.lower()):
-            try:
-                img = mpimg.imread(f'{word}.png')
-            except FileNotFoundError:
-                img = mpimg.imread(f'{word}.jpg')
-            # else:
-
-            imgplot = plt.imshow(img)
-            plt.show()
-            return(f"{robo} : and here we go!!")
-        
-
-    for word in welcomeGreetings:
-        if(word in userquestion.lower()):
-            return(f"{robo} : {random.choice(welcomeGreetingResponces)}")
-    for word in exitGreetings:
+            return(f"{robo} : {random.choice(lists.welcomeGreetingResponces)}")
+    for word in lists.exitGreetings:
         if(word in userquestion.lower() or status == 0):
             return(f"{robo} : Ok Byeee.! Have a nice day")
             
-    for word in information:
+    for word in lists.information:
         if((word in userquestion.lower())):
             f = open(f'info.txt','r+')
             found = 0 
@@ -627,11 +939,12 @@ def userInputs(robo,user,status,userquestion):
             f.close()
             num = 0
             for line in lines:
+                # print(line)
                 Key,Value,a1 = line.split(" : ")
                 if(Key.lower() == word.lower()):
                     found =1
                     return(f"{robo} : {Value}")  
-    for word in updateData:
+    for word in lists.updateData:
             if(word in userquestion.lower()):
                 try:
                     a1,dataKey = userquestion.split(f"{word} ")
@@ -678,7 +991,7 @@ def userInputs(robo,user,status,userquestion):
                     # else:
                     #     print(f"{robo} : Sorry can't able understand, Please try again !")
                 # userInputs(robo,user,status,"")
-    for word in saveData:
+    for word in lists.saveData:
             if(word in userquestion.lower()):
                 try:
                     a1,dataKey = userquestion.split(f"{word} ")
@@ -728,7 +1041,7 @@ def userInputs(robo,user,status,userquestion):
 ###### ASK 
 
 
-    for word in askData:
+    for word in lists.askData:
         if((word in userquestion.lower()) or (("what") in userquestion.lower() and own==1)):# ME => mech
             try:
                 a1,dataKey = userquestion.split(f"{word} ")
@@ -745,8 +1058,9 @@ def userInputs(robo,user,status,userquestion):
                 if(dataKey.lower() in Key.lower()):   
                     found = 1 
                     num+=1
-                    a1,key =  Key.split("my ")
-                    return(f"{robo} : {key} - {Value}")
+                    if("my " in Key):
+                        a1,Key =  Key.split("my ")
+                    return(f"{robo} : {Key} - {Value}")
             # if(found ==1):
             #     userInputs(robo,user,status,"")     
 
@@ -764,18 +1078,64 @@ def userInputs(robo,user,status,userquestion):
             #     print(f"{robo} : Sorry can't able understand, Please try again !")
             # userInputs(robo,user,status,"")
 
+
+    for word in lists.options:
+        if (word in userquestion.lower()):
+            t1 = ("site",f"http://www.iitdh.ac.in/{word}.php",f"{robo} : Now you will be directed to {word} page ")
+            # webbrowser.open(f"http://www.iitdh.ac.in/{word}.php")
+            return t1
+
+        if ("facebook" in userquestion.lower()):
+            t1 = ("site","https://www.facebook.com/iitdharwadofficial/",f"{robo} : Opening Facebook page")
+                # webbrowser.open("https://www.facebook.com/iitdharwadofficial/")
+            return t1
+        if ("youtube" in userquestion.lower()):
+            t1 = ("site","https://www.youtube.com/channel/UCG_M5tP34-uO-Jkr9Q7VDsA",f"{robo} : Opening youtube channel")
+                # webbrowser.open("https://www.youtube.com/channel/UCG_M5tP34-uO-Jkr9Q7VDsA")
+            return t1
+        if ("twitter" in userquestion.lower()):
+            t1 = ("site","https://twitter.com/iitdhrwd",f"{robo} : Opening twitter..")
+            return t1
+        if ("intranet" in userquestion.lower()):
+            t1 = ("site","http://intranet.iitdh.ac.in:81/",f"{robo} : Opening Intranet..")
+            return t1
+        if ("more about college" in userquestion.lower()):
+            t1 = ("site","https://www.collegepravesh.com/engineering-colleges/iit-dharwad/",f"{robo} : Opening collagepravesh.com")
+            return t1
+        if ("portal" in userquestion.lower()):
+            t1 = ("site","http://portal.iitdh.ac.in/asc/index.jsp",f"{robo} : Opening IIT Dharwad Portal")
+            return t1
+        if ("moddle" in userquestion.lower()):
+            t1 = ("site","https://moodle2.iitdh.ac.in/my/", f"{robo} : Opening moodle")
+            return t1
+        if ("news" in userquestion.lower()):
+            t1 = ("site","https://timesofindia.indiatimes.com/topic/IIT-Dharwad",f"{robo} : Opening news")
+            return t1
+        if ("quora"  in userquestion.lower() or "query" in userquestion.lower()):
+            t1 = ("site",f"https://www.quora.com/search?q={userquestion}",f"{robo} : Opening quora..")
+            return t1
+        if ("train" in userquestion.lower() or "flight" in userquestion.lower()):
+            t1 = ("site","https://railways.makemytrip.com/listing?date=20191120&srcStn=SBC&srcCity=Benguluru&destStn=DWR&destCity=Dharwar&classCode=",f"{robo} : Opening make my trip..")
+            return t1
+        if ("hotel" in userquestion.lower()):
+            t1 = ("site","https://www.makemytrip.com/hotels/hotel-listing/?checkin=11202019&checkout=11222019&roomStayQualifier=2e0e&city=XZQ&country=IN&type=CTY&searchText=Dharwad&visitorId=628f4b8d-399c-4531-84c3-fc1c79c4b953",f"{robo} :Opening make my trip..")
+            return t1
 ############################################################e########################################## 
 
 # Unable to interpret 
 
     # print(f"{robo} : Sorry I am not able to answer this !")
-    f = open("ADMINfeedback.txt","a")
-    f.write(f"{userquestion}\n")
-    f.close()
-    t1 = ("exit",f"{robo} : Sorry I am not able to answer this !",f"{robo} :  your question has been added in feedback for Admin, Still you can get more info here :")
+
+    f1 = open("ADMINfeedback.txt","a")
     var,a1 = userquestion.split(" : ")
+    f1.write(f"\n{a1}")
+    f1.close()
+
+
+    t1 = ("exit",f"{robo} : Sorry I am not able to answer this !",f"{robo} :  your question has been added in feedback for Admin, Still you can get more info here :")
     # print(var)
     webbrowser.open(f"http://www.google.com/search?q={a1}")
+
     return t1
     # userInputs(robo,user,status,"")
 
@@ -814,3 +1174,6 @@ mainApplication.mainloop()
             # if answer[0] == "exit" :
             #     Actions.chatUpdate(answer[1],1)
             #     Actions.chatUpdate(answer[2],1)
+
+# def adminSection():
+#     print("In admin section ")
